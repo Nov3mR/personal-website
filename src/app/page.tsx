@@ -1,13 +1,13 @@
 'use client';
 import Header from './components/Header';
 import HomeSection from './components/Home';
+import About from './components/About';
+import Education from './components/Education';
+import Projects from "./components/Projects";
 import SkillsSection from './components/SkillsSection';
 import Contact from './components/Contact';
-import Education from './components/Education';
-import About from './components/About';
 import Footer from './components/Footer';
-import Image from 'next/image';
-import { useEffect } from 'react';
+
 
 export default function Home() {
 
@@ -24,7 +24,10 @@ export default function Home() {
 
         {/* Education Section */}
         <Education />
-        
+
+        {/* Projects Section */}
+        <Projects />
+
         {/* Skills Section */}
         <SkillsSection />
 

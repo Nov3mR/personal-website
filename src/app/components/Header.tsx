@@ -47,6 +47,7 @@ export default function Header() {
         <a href="#home" className={activeSection === 'home' ? 'active' : ''}>Home</a>
         <a href="#about" className={activeSection === 'about' ? 'active' : ''}>About</a>
         <a href="#education" className={activeSection === 'education' ? 'active' : ''}>Education</a>
+        <a href="#projects" className={activeSection === 'projects' ? 'active' : ''}>Projects</a>
         <a href="#skills" className={activeSection === 'skills' ? 'active' : ''}>Skills</a>
         <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>Contact</a>
       </nav>

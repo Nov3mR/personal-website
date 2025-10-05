@@ -33,8 +33,22 @@ a:visited {
     color: inherit;
 }
 
+/* Base section background */
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+    background: var(--bg-color);
+    transition: background 0.5s ease;
+}
+
+/* Every even section */
+section:nth-of-type(even) {
+    background: var(--second-bg-color);
+}
+
+
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -270,7 +284,7 @@ section {
 .home-sci a:hover::before {
     background-color: var(--main-color);
 }
-
+/* 
 .home-imgHover{
     position: absolute;
     top: 0;
@@ -284,7 +298,7 @@ section {
 .home-imgHover:hover {
     background: var(--bg-color);
     opacity: 0.8;
-}
+} */
 
 footer {
     text-align: center;
@@ -299,8 +313,213 @@ footer {
     align-items: center;
     flex-direction: column;
     gap: 2rem;
-    background: var(--second-bg-color);
+    /* background: var(--second-bg-color); */
     padding-bottom: 6rem;
+}
+
+/* .projects-section {
+    justify-content: center;
+}
+
+.projects-section p{
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    text-align: center;
+} */
+
+/* Enhanced Projects Section Styles - Add to your existing CSS */
+
+.projects-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated background particles */
+.projects-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, var(--main-color) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+    opacity: 0.1;
+    pointer-events: none;
+    animation: projectsGlow 15s ease-in-out infinite alternate;
+}
+
+@keyframes projectsGlow {
+    0% {
+        opacity: 0.05;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.15;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.05;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced project card hover effects */
+.project-card {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        var(--main-color),
+        transparent
+    );
+    border-radius: 2rem;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: -1;
+}
+
+.project-card:hover::before {
+    opacity: 0.3;
+    animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Enhance the project card with depth */
+.project-card:hover {
+    box-shadow: 
+        0 20px 60px rgba(0, 171, 240, 0.3),
+        0 0 0 1px rgba(0, 171, 240, 0.1) inset,
+        0 0 40px rgba(138, 43, 226, 0.2);
+}
+
+/* Smooth scale animation for tags */
+.project-card .tag {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .tag {
+    transform: translateY(-2px);
+}
+
+/* Animated underline for the CTA */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.project-card:hover .shimmer-effect {
+    animation: shimmer 2s infinite;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+    .project-card {
+        padding: 2rem;
+    }
+    
+    .projects-section h2.heading {
+        font-size: 3.5rem;
+    }
+    
+    .project-card h3 {
+        font-size: 2rem;
+    }
+}
+
+/* Add glass morphism effect */
+.project-card {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth entrance animation for cards */
+.project-card {
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.project-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.project-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.project-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.project-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced gradient text animation */
+.project-card:hover h3 {
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% auto;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+}
+
+/* Pulse effect for project number badge */
+.project-card:hover [class*="PROJECT"] {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
 }
 
 .heading {
@@ -467,7 +686,7 @@ span {
 .skills {
     min-height: auto;
     padding-bottom: 7rem;
-    background: var(--second-bg-color);
+    /* background: var(--main-color); */
 }
 
 .skills h2 {
@@ -559,6 +778,7 @@ span {
 .contact {
     min-height: auto;
     padding-bottom: 7rem;
+    /* background: var(--second-bg-color); */
 }
 
 .contact h2 {
@@ -735,7 +955,7 @@ span {
     align-items: center;
     flex-wrap: wrap;
     padding: 2rem 9%;
-    background: var(--second-bg-color);
+    /* background: var(--second-bg-color); */
 }
 
 .footer-text,
