@@ -10,7 +10,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <Head>
-        <link rel="icon" href="/a-svgrepo-com.svg" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -19,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
         />
+        <link rel="icon" href="/a-svgrepo-com.svg" />
       </Head>
       <body>{children}</body>
     </html>

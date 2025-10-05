@@ -98,7 +98,7 @@ section {
     display: flex;
     align-items: center;
     padding: 0 9%;
-    background: url("aaditImage.png") no-repeat;
+    background: url("/aaditImage.png") no-repeat;
     background-size: auto;
     background-position: 90% 40% ;
 
@@ -705,6 +705,29 @@ span {
 .contact .contact-links .linkedIn-icon:hover::before {
     background-color: var(--main-color);
 }
+
+/* Base styles for LinkedIn icon */
+.contact .contact-links .linkedIn-icon,
+.contact .contact-links .linkedIn-icon:visited,
+.contact .contact-links .linkedIn-icon:focus,
+.contact .contact-links .linkedIn-icon:active {
+  color: var(--main-color);       /* Keep original color */
+  background: transparent;
+  border: 0.2rem solid var(--main-color);
+  outline: none;                  /* Remove default focus outline */
+  transition: color 0.5s, background-color 0.5s;
+}
+
+/* Hover effect */
+.contact .contact-links .linkedIn-icon:hover {
+  color: var(--bg-color);
+}
+
+.contact .contact-links .linkedIn-icon:hover::before {
+  background-color: var(--main-color);
+}
+
+
 
 .footer {
     display: flex;
