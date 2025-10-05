@@ -49,10 +49,11 @@ export default function Projects() {
               borderRadius: '1.5rem',
               overflow: 'visible',
               backdropFilter: 'blur(10px)',
-              transition: 'all 0.5s ease',
+              transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
               display: 'flex',
               flexDirection: 'column',
-              height: '100%'
+              height: '100%',
+              willChange: 'transform'
             }}
           >
             {/* Subtle glow on hover */}
@@ -61,7 +62,7 @@ export default function Projects() {
               style={{
                 background: 'radial-gradient(circle at 50% 0%, rgba(0, 171, 240, 0.15), transparent 70%)',
                 borderRadius: '1.5rem',
-                transition: 'opacity 0.5s ease'
+                transition: 'opacity 0.3s ease'
               }}
             />
 
@@ -106,7 +107,13 @@ export default function Projects() {
 
                 {/* Tags */}
                 {project.tags && (
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '1rem', 
+                    marginBottom: '2rem',
+                    minHeight: '3.3rem'
+                  }}>
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
@@ -117,7 +124,11 @@ export default function Projects() {
                           background: 'rgba(0, 171, 240, 0.1)',
                           color: 'var(--main-color)',
                           borderRadius: '0.5rem',
-                          border: '0.1rem solid rgba(0, 171, 240, 0.3)'
+                          border: '0.1rem solid rgba(0, 171, 240, 0.3)',
+                          whiteSpace: 'nowrap',
+                          height: '3.3rem',
+                          display: 'inline-flex',
+                          alignItems: 'center'
                         }}
                       >
                         {tag}
@@ -160,10 +171,13 @@ export default function Projects() {
 
             {/* Hover effect */}
             <style jsx>{`
+              .project-card {
+                transform: translateY(0);
+              }
               .project-card:hover {
-                transform: translateY(-0.5rem);
-                border-color: var(--main-color);
-                box-shadow: 0 1rem 3rem rgba(0, 171, 240, 0.2);
+                transform: translateY(-0.5rem) !important;
+                border-color: var(--main-color) !important;
+                box-shadow: 0 1rem 3rem rgba(0, 171, 240, 0.2) !important;
               }
             `}</style>
           </Link>
@@ -172,111 +186,3 @@ export default function Projects() {
     </section>
   );
 }
-
-
-// // app/components/projects.tsx
-// import Link from "next/link";
-
-// interface Project {
-//   title: string;
-//   description: string;
-//   href: string;
-//   tags?: string[];
-// }
-
-// const projects: Project[] = [
-//   {
-//     title: "Will AI End Humanity?",
-//     description: "A dissertation exploring the potential risks of AI.",
-//     href: "/projects/EPQ",
-//     tags: ["Research", "AI Ethics"],
-//   },
-//   {
-//     title: "Camera Strap Redesign",
-//     description: "A Conceptual Design Specification for a camera strap.",
-//     href: "/projects/ESP",
-//     tags: ["Design", "Product"],
-//   }
-// ];
-
-// export default function Projects() {
-//   return (
-//     <section
-//       className="projects-section text-white py-20"
-//       id="projects"
-//     >
-//       <div>
-//         <h2 className="heading">
-//           My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Projects</span>
-//         </h2>
-//         <p>
-//           Explore my latest work and creative endeavors
-//         </p>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-//           {projects.map((project, index) => (
-//             <Link
-//               key={project.title}
-//               href={project.href}
-//               className="group relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 p-8 rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:border-blue-500/50 hover:-translate-y-2"
-//             >
-//               {/* Animated gradient background on hover */}
-//               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500" />
-              
-//               {/* Accent corner decoration */}
-//               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/20 to-transparent rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-6 group-hover:-translate-y-6 transition-transform duration-500" />
-
-//               <div className="relative z-10 flex flex-col h-full">
-//                 {/* Project number badge */}
-//                 <div className="text-sm font-mono text-blue-400/60 mb-4">
-//                   {String(index + 1).padStart(2, '0')}
-//                 </div>
-
-//                 <div className="flex-grow">
-//                   <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-blue-400 transition-colors duration-300">
-//                     {project.title}
-//                   </h3>
-//                   <p className="text-gray-400 leading-relaxed mb-4">
-//                     {project.description}
-//                   </p>
-
-//                   {/* Tags */}
-//                   {project.tags && (
-//                     <div className="flex flex-wrap gap-2 mb-4">
-//                       {project.tags.map((tag) => (
-//                         <span
-//                           key={tag}
-//                           className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20"
-//                         >
-//                           {tag}
-//                         </span>
-//                       ))}
-//                     </div>
-//                   )}
-//                 </div>
-
-//                 {/* View project link with arrow animation */}
-//                 <div className="flex items-center text-blue-400 font-medium mt-4">
-//                   <span className="mr-2">View Project</span>
-//                   <svg
-//                     className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300"
-//                     fill="none"
-//                     stroke="currentColor"
-//                     viewBox="0 0 24 24"
-//                   >
-//                     <path
-//                       strokeLinecap="round"
-//                       strokeLinejoin="round"
-//                       strokeWidth={2}
-//                       d="M17 8l4 4m0 0l-4 4m4-4H3"
-//                     />
-//                   </svg>
-//                 </div>
-//               </div>
-//             </Link>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }

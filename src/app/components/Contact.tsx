@@ -10,16 +10,24 @@ export default function Contact() {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate submission delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
     console.log('Form submitted:', formData);
     // You can later integrate email API or backend here
-    alert('Message sent!');
+    alert('Message sent successfully!');
     setFormData({ name: '', email: '', mobile: '', subject: '', message: '' });
+    setIsSubmitting(false);
   };
 
   return (
@@ -61,7 +69,6 @@ export default function Contact() {
               placeholder="Mobile Number"
               value={formData.mobile}
               onChange={handleChange}
-              required
             />
             <span className="focus"></span>
           </div>
@@ -82,7 +89,8 @@ export default function Contact() {
         <div className="textarea-field">
           <textarea
             name="message"
-            placeholder="Message"
+            placeholder="Your Message"
+            rows={6}
             value={formData.message}
             onChange={handleChange}
             required
@@ -91,30 +99,56 @@ export default function Contact() {
         </div>
 
         <div className="btn-box btns">
-          <button type="submit" className="btn">Submit</button>
+          <button 
+            type="submit" 
+            className="btn"
+            disabled={isSubmitting}
+            style={{
+              opacity: isSubmitting ? 0.6 : 1,
+              cursor: isSubmitting ? 'not-allowed' : 'pointer'
+            }}
+          >
+            {isSubmitting ? 'Sending...' : 'Send'}
+          </button>
         </div>
       </form>
 
-       <div className="contact-links">
-        <h3 className="heading">Or</h3>
+      <div className="contact-links">
+        <h3 className="heading" style={{ fontSize: '2.5rem', marginTop: '4rem' }}>
+          Or reach out directly
+        </h3>
 
         <div className="contact-icons">
-            <a
+          <a
             href="mailto:aadit.gupta@mail.utoronto.ca"
             className="email-icon"
-            >
+            aria-label="Email me"
+            style={{ textDecoration: 'none' }}
+          >
             <i className="bx bx-envelope"></i>
-            </a>
+          </a>
 
-            <a
+          <a
             href="https://www.linkedin.com/in/aadit-gupta-1411ag"
             target="_blank"
+            rel="noopener noreferrer"
             className="linkedIn-icon"
-            >
-            <i className="bx bx-linkedin"></i>
-            </a>
+            aria-label="Connect on LinkedIn"
+            style={{ textDecoration: 'none' }}
+          >
+            <i className="bx bxl-linkedin"></i>
+          </a>
         </div>
-        </div>
+
+        <p style={{
+          fontSize: '1.6rem',
+          color: 'rgba(237, 237, 237, 0.7)',
+          textAlign: 'center',
+          marginTop: '2rem'
+        }}>
+          aadit.gupta@mail.utoronto.ca
+        </p>
+      </div>
     </section>
   );
 }
