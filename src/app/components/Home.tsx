@@ -11,7 +11,7 @@ export default function HomeSection() {
 
   // Chatbot states
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hi! I\'m Aadit\'s AI assistant. Ask me anything about his experience, projects, or skills!' }
+    { role: 'assistant', content: 'Hi! I\'m Aadit. Ask me anything about experience, projects, or skills!' }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -342,7 +342,7 @@ export default function HomeSection() {
                 fontWeight: '700',
                 marginBottom: '0.3rem'
               }}>
-                AI Assistant
+                Learn more about me!
               </h3>
               <p style={{ 
                 fontSize: '1.3rem', 
